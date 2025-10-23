@@ -1,0 +1,191 @@
+import { Link } from "react-router-dom";
+import { Section } from "../components/Section";
+import logo from "../assets/log11.png"; // ✅ Make sure the logo path is correct
+
+export default function Home() {
+  return (
+    <div className="min-h-screen bg-black text-white">
+      
+      {/* ======== MENU BAR ======== */}
+      <nav className="w-full flex justify-between items-center px-10 py-4 bg-black/80 backdrop-blur-md fixed top-0 left-0 z-50 border-b border-gray-800 shadow-md">
+        
+        {/* --- Left: Logo + Clinic Name --- */}
+        <div className="flex items-center gap-3">
+          <img
+            src={logo}
+            alt="Fine Vision Logo"
+            className="h-10 w-10 object-contain rounded-full border border-gray-700 shadow-md hover:scale-110 transition-transform duration-300"
+          />
+          <div className="leading-tight">
+            <h1 className="text-xl font-extrabold text-blue-400 tracking-widest">
+              FINE<span className="text-white">VISION</span>
+            </h1>
+            <p className="text-[12px] italic text-gray-400">
+              Eye Care & Vision Therapy Center
+            </p>
+          </div>
+        </div>
+
+        {/* --- Right: Menu Links --- */}
+        <div className="flex items-center gap-8">
+          {[
+            { name: "Home", path: "/" },
+            { name: "About Me", path: "/about" },
+            { name: "Vision Therapy", path: "/vision-therapy" },
+            { name: "Sports Vision", path: "/sports-vision" },
+            { name: "Patient Form", path: "/patient-form" },
+            { name: "Blog", path: "/blog" },
+            { name: "Contact", path: "/contact" },
+          ].map((link, i) => (
+            <Link
+              key={i}
+              to={link.path}
+              className="text-gray-300 hover:text-purple-400 font-medium transition-all duration-300 hover:scale-110"
+            >
+              {link.name}
+            </Link>
+          ))}
+        </div>
+      </nav>
+
+      {/* ======== HERO SECTION ======== */}
+<section
+  className="relative overflow-hidden text-white min-h-[80vh] flex flex-col items-center justify-center text-center px-4 pt-28 bg-cover bg-center bg-no-repeat"
+  style={{ backgroundImage: "url('/src/assets/eye.png')" }} // 👈 your image path here
+>
+  {/* Dark overlay to make text readable */}
+  <div className="absolute inset-0 bg-black/70"></div>
+
+  {/* Text content */}
+  <div className="relative z-10">
+    <h1 className="text-4xl md:text-5xl font-extrabold leading-tight text-white hover:text-purple-400 transition duration-500">
+      Fine Vision Therapy & Contact Lens Care
+    </h1>
+    <p className="mt-4 text-purple-200 hover:text-white text-lg font-bold uppercase max-w-2xl mx-auto ">
+      Personalized, evidence-based programs for binocular vision, pediatric vision, and sports performance.
+    </p>
+    <div className="mt-6 flex gap-4 justify-center">
+      <Link
+        to="/patient-form"
+        className="bg-blue-900 text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:bg-blue-400 transition"
+      >
+        Book Assessment
+      </Link>
+      <Link
+        to="/vision-therapy"
+        className="border border-white hover:bg-white hover:text-black px-6 py-3 rounded-lg transition"
+      >
+        Learn More
+      </Link>
+    </div>
+  </div>
+</section>
+
+
+      {/* ======== WHAT IS VISION THERAPY ======== */}
+      <Section
+        id="what"
+        title="About Me"
+        subtitle="Introduction & Experience"
+      >
+        <div className="grid md:grid-cols-3 gap-6">
+          {[
+            {
+              t: "Binocular Vision",
+              d: "Improve convergence, divergence, and eye teaming for comfortable reading.",
+            }
+          ].map((c, i) => (
+            <div
+              key={i}
+              className="bg-white/10 border border-gray-700 rounded-4xl p- shadow-md hover:scale-105 transition-transform"
+            >
+              <div className="text-lg font-semibold text-purple-400">{c.t}</div>
+              <p className="text-gray-300 mt-2">{c.d}</p>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* ======== WHO BENEFITS ======== */}
+      <Section id="benefit" title="Who Can Benefit?">
+        <div className="grid md:grid-cols-4 gap-4">
+          {[
+            "Children with reading difficulties",
+            "Students with attention or tracking issues",
+            "Adults with digital eye strain",
+            "Post-concussion visual rehab",
+          ].map((b, i) => (
+            <div
+              key={i}
+              className="bg-white/10 border border-gray-700 rounded-xl p-5 shadow-md text-gray-200 hover:scale-105 transition"
+            >
+              {b}
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* ======== OUR PROCESS ======== */}
+      <Section id="process" title="Our Process" subtitle="From evaluation to home activities">
+        <ol className="grid md:grid-cols-4 gap-4 list-decimal list-inside">
+          {[
+            "Comprehensive evaluation",
+            "Personalized therapy plan",
+            "Weekly in-clinic sessions",
+            "Home exercises & progress reviews",
+          ].map((step, i) => (
+            <li
+              key={i}
+              className="bg-white/10 border border-gray-700 rounded-xl p-5 shadow-md text-gray-200 hover:scale-105 transition"
+            >
+              {step}
+            </li>
+          ))}
+        </ol>
+      </Section>
+
+      {/* ======== TESTIMONIALS ======== */}
+      <Section id="testimonials" title="What Patients Say">
+        <div className="grid md:grid-cols-3 gap-6">
+          {[
+            { q: "My child’s reading improved within weeks!", a: "Parent of 9-year-old" },
+            { q: "Therapy reduced headaches and eye strain.", a: "College student" },
+            { q: "Faster reactions on the field after sports vision training.", a: "Amateur cricketer" },
+          ].map((t, i) => (
+            <blockquote
+              key={i}
+              className="bg-white/10 border border-gray-700 rounded-xl p-6 shadow-md hover:scale-105 transition"
+            >
+              <p className="text-gray-100">“{t.q}”</p>
+              <cite className="block mt-3 text-sm text-purple-400">— {t.a}</cite>
+            </blockquote>
+          ))}
+        </div>
+      </Section>
+
+      {/* ======== CTA ======== */}
+      <Section id="cta">
+        <div className="bg-white/10 border border-gray-700 rounded-xl p-8 md:p-10 shadow-lg flex flex-col md:flex-row items-center justify-between gap-4">
+          <div>
+            <div className="text-2xl font-bold text-white">Ready to get started?</div>
+            <div className="text-gray-400">Book an evaluation or contact us with any questions.</div>
+          </div>
+          <div className="flex gap-3">
+            <Link
+              to="/patient-form"
+              className="bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-500 transition"
+            >
+              Book Now
+            </Link>
+            <Link
+              to="/contact"
+              className="px-6 py-3 rounded-lg border border-gray-400 hover:bg-white hover:text-black transition"
+            >
+              Contact
+            </Link>
+          </div>
+        </div>
+      </Section>
+    </div>
+  );
+}
