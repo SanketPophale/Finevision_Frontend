@@ -175,7 +175,7 @@ export default function Home() {
           <div
             className="absolute inset-0 bg-cover bg-center"
             style={{
-              backgroundImage: "url('/src/assets/eye1.png')",
+              backgroundImage: "url('/eye1.png')",
             }}
           ></div>
 
@@ -252,7 +252,7 @@ export default function Home() {
             className="relative z-10 w-full md:w-1/2 flex justify-center mt-12 md:mt-0"
           >
             <Motion.img
-              src="/src/assets/eye.png"
+              src="/eye.png"
               alt="Vision Hero"
               className="w-[85%] max-w-[600px] rounded-3xl shadow-2xl object-contain"
               initial={{ scale: 0.9 }}
